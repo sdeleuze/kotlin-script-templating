@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1-M02'
-		springBootVersion = '1.4.1.RELEASE'
+		kotlinVersion = '1.1-M04'
+		springBootVersion = '1.4.3.RELEASE'
 	}
 	repositories {
 		maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }

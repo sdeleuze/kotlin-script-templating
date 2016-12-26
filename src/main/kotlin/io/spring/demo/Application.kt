@@ -22,8 +22,8 @@ open class Application {
     @Bean
     open fun txtViewResolver(): ViewResolver {
         val viewResolver = ScriptTemplateViewResolver()
-        viewResolver.setPrefix("static/templates/")
-        viewResolver.setSuffix(".txt")
+        viewResolver.setPrefix("templates/")
+        viewResolver.setSuffix(".kts")
         return viewResolver
     }
 }
