@@ -15,3 +15,5 @@ ${include("header", bindings)}
 ${include("footer")}
 """
 ```
+
+Feel free to send pull requests to improve it!
