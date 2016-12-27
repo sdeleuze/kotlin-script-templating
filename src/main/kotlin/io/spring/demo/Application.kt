@@ -23,7 +23,7 @@ open class Application {
     open fun txtViewResolver(): ViewResolver {
         val viewResolver = ScriptTemplateViewResolver()
         viewResolver.setPrefix("templates/")
-        viewResolver.setSuffix(".ktt")
+        viewResolver.setSuffix(".kts")
         return viewResolver
     }
 }
