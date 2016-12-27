@@ -6,6 +6,6 @@ fun render(template: String, model: Map<String, Any>, url: String): String {
     bindings.putAll(model)
     bindings.put("url", url)
     engine.setBindings(bindings, ScriptContext.ENGINE_SCOPE)
-    // TODO Use engine.eval(String, Bindings) when it will work
+    // TODO Use engine.eval(String, Bindings) when https://youtrack.jetbrains.com/issue/KT-15450 will be fixed
     return engine.eval(template) as String
 }
