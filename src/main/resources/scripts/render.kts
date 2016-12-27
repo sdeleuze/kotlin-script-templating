@@ -1,8 +1,9 @@
 import javax.script.*
 
+// TODO Deal with locale
 fun render(template: String, model: Map<String, Any>, url: String): String {
     val engine = ScriptEngineManager().getEngineByName("kotlin")
-    val bindings: Bindings = SimpleBindings()
+    val bindings = SimpleBindings()
     bindings.putAll(model)
     bindings.put("url", url)
     engine.setBindings(bindings, ScriptContext.ENGINE_SCOPE)
