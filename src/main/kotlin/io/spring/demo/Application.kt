@@ -16,6 +16,7 @@ open class Application {
         configurer.engineName = "kotlin"
         configurer.setScripts("scripts/render.kts")
         configurer.renderFunction = "render"
+        configurer.isSharedEngine = false
         return configurer
     }
 
