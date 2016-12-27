@@ -1,5 +1,3 @@
-"""
-<html>
+"""<html>
 <body>
-    <title>${this.bindings["title"]}</title>
-"""
+<title>${this.bindings["title"]}</title>"""
