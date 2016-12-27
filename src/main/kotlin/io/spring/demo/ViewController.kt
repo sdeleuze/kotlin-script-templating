@@ -9,7 +9,7 @@ class ViewController {
 
     @GetMapping("/")
     fun render(model: Model): String {
-        model.addAttribute("title", "Layout example")
+        model.addAttribute("title", "Users")
         model.addAttribute("users", listOf(
                 User("Juergen", "Hoeller"),
                 User("Rossen", "Stoyanchev"),
@@ -18,7 +18,7 @@ class ViewController {
                 User("Arjen", "Poutsma"),
                 User("Sébastien", "Deleuze")
         ))
-        return "foo"
+        return "index"
     }
 
 }
