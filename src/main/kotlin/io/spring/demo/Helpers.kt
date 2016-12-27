@@ -8,7 +8,7 @@ import javax.script.ScriptContext
 import javax.script.ScriptEngineManager
 import javax.script.SimpleBindings
 
-fun <T> Iterable<T>.line(function: (foo: T) -> String): String { return joinToString(separator = "\n") { foo -> function.invoke(foo) } }
+fun <T> Iterable<T>.jointToLine(function: (foo: T) -> String): String { return joinToString(separator = "\n") { foo -> function.invoke(foo) } }
 
 fun include(viewName: String, model: Map<String, Any?>? = null) : String {
     // TODO Make prefix and suffix configurable, eventually find a way to reuse ViewResolver configuration
