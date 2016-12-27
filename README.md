@@ -1,4 +1,4 @@
-Spring Boot + Kotlin script type safe template rendering
+Spring Boot + Kotlin type safe template rendering
 
 These templates look like:
 
