@@ -1,6 +1,6 @@
-Kotlin script based type safe template rendering example with Spring Boot.
+Kotlin script based template rendering example with Spring Boot.
 
-Templates look like:
+These type safe templates look like:
 
 ```kotlin
 import io.spring.demo.User
