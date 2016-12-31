@@ -33,6 +33,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-compiler:${kotlinVersion}")
-	compile("org.jetbrains.kotlin:kotlin-script-util:${kotlinVersion}")
+	compile("org.jetbrains.kotlin:kotlin-script-util:${kotlinVersion}") {
+		exclude group: "com.jcabi", module: "jcabi-aether"
+		exclude group: "org.apache.maven", module: "maven-core"
+		exclude group: "org.sonatype.aether", module: "aether-api"
+	}
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
