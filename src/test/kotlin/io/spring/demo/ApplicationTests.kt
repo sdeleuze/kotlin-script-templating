@@ -3,25 +3,25 @@ package io.spring.demo
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.boot.test.web.client.TestRestTemplate
 
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT)
 class ApplicationTests {
 
 	@Autowired
 	lateinit var restTemplate: TestRestTemplate
 
-	@Test
-	fun viewRedering() {
-		val content = """<html>
+	val englishContent = """<html>
 <body>
 <title>Users</title>
-<h1>Title : Users</h1>
+<p>Locale: <a href="/?locale=fr">FR</a> | <a href="/?locale=en">EN</a></p>
+<h1>Users</h1>
 <ul>
 <li>User Juergen Hoeller</li>
 <li>User Rossen Stoyanchev</li>
@@ -32,7 +32,36 @@ class ApplicationTests {
 </ul>
 </body>
 </html>"""
-		assertEquals(content, restTemplate.getForEntity("/", String::class.java).body)
+
+	val frenchContent = """<html>
+<body>
+<title>Utilisateurs</title>
+<p>Locale: <a href="/?locale=fr">FR</a> | <a href="/?locale=en">EN</a></p>
+<h1>Utilisateurs</h1>
+<ul>
+<li>Utilisateur Juergen Hoeller</li>
+<li>Utilisateur Rossen Stoyanchev</li>
+<li>Utilisateur Brian Clozel</li>
+<li>Utilisateur Stéphane Nicoll</li>
+<li>Utilisateur Arjen Poutsma</li>
+<li>Utilisateur Sébastien Deleuze</li>
+</ul>
+</body>
+</html>"""
+
+	@Test
+	fun viewRenderingWithDefaultLocale() {
+		assertEquals(englishContent, restTemplate.getForObject("/", String::class.java))
+	}
+
+	@Test
+	fun viewRenderingWithEnglishLocale() {
+		assertEquals(englishContent, restTemplate.getForObject("/?locale=en", String::class.java))
+	}
+
+	@Test
+	fun viewRenderingWithFrenchLocale() {
+		assertEquals(frenchContent, restTemplate.getForObject("/?locale=fr", String::class.java))
 	}
 
 }
