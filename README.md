@@ -20,6 +20,7 @@ ${include("footer")}
 To enable variable resolution in `.kts` files in IDEA, go to menu preferences -> Build, Execution, Deployement -> Compiler -> Kotlin Compiler and set:
  - Script templates class: `kotlin.script.templates.standard.ScriptTemplateWithBindings`
  - Script templates classpath: `/path/to/kotlin-script-runtime.jar`
+ 
 This will be configured automatically in future version of IDEA Kotlin plugin.
 
 Feel free to send pull requests to improve it!
