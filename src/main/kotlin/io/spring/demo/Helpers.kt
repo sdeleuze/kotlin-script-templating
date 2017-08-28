@@ -1,23 +1,28 @@
 package io.spring.demo
 
+import java.util.concurrent.ConcurrentHashMap
+import javax.script.Compilable
+import javax.script.CompiledScript
 import javax.script.ScriptEngineManager
 import javax.script.SimpleBindings
 import kotlin.script.templates.standard.ScriptTemplateWithBindings
 
 fun ScriptTemplateWithBindings.include(path: String, model: Map<String, Any>? = null) :String {
-    val engine = ScriptEngineManager().getEngineByName("kotlin")
+	var cache = bindings["cache"]!! as ConcurrentHashMap<String, CompiledScript>
     var includeBindings = if (model != null) {
         val b = SimpleBindings(LinkedHashMap(model))
         b["include"] = bindings["include"]
         b["i18n"] = bindings["i18n"]
-        b
+		b["cache"] = cache
+		b
     } else {
         val b = SimpleBindings(bindings)
         b.remove("kotlin.script.history")
         b
     }
     val template = (bindings["include"] as (String) -> String).invoke(path)
-    return engine.eval(template ,includeBindings) as String
+	val compiledScript = cache.getOrPut(path, { compilableEngine().compile(template) })
+    return compiledScript.eval(includeBindings) as String
 }
 
 fun ScriptTemplateWithBindings.i18n(code: String) =
@@ -37,3 +42,5 @@ var ScriptTemplateWithBindings.user: User
 var ScriptTemplateWithBindings.title: String
   get() = bindings["title"] as String
   set(value) { throw UnsupportedOperationException()}
+
+fun compilableEngine() = ScriptEngineManager().getEngineByName("kotlin") as Compilable

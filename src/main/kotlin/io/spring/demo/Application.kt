@@ -10,6 +10,8 @@ import java.util.Locale
 import org.springframework.web.servlet.i18n.SessionLocaleResolver
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import java.util.concurrent.ConcurrentHashMap
+import javax.script.CompiledScript
 
 
 @SpringBootApplication
@@ -42,6 +44,9 @@ class Application : WebMvcConfigurer {
     override fun addInterceptors(registry: InterceptorRegistry) {
         registry.addInterceptor(localeChangeInterceptor())
     }
+
+	@Bean
+	fun cache() = ConcurrentHashMap<String, CompiledScript>()
 
 }
 
