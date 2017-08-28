@@ -1,6 +1,5 @@
 package io.spring.demo
 
-import javax.script.ScriptContext
 import javax.script.ScriptEngineManager
 import javax.script.SimpleBindings
 import kotlin.script.templates.standard.ScriptTemplateWithBindings
@@ -17,10 +16,8 @@ fun ScriptTemplateWithBindings.include(path: String, model: Map<String, Any>? = 
         b.remove("kotlin.script.history")
         b
     }
-
-    engine.setBindings(includeBindings, ScriptContext.ENGINE_SCOPE)
     val template = (bindings["include"] as (String) -> String).invoke(path)
-    return engine.eval(template) as String
+    return engine.eval(template ,includeBindings) as String
 }
 
 fun ScriptTemplateWithBindings.i18n(code: String) =
