@@ -23,7 +23,4 @@ To enable variable resolution in `.kts` files in IDEA, go to menu preferences ->
  
 This will be configured automatically in future version of IDEA Kotlin plugin.
 
-Rendering is currently slow, `CompiledScript` + some caching should improve that but that's
-something that need to be done, feel free to contribute.
-
 Feel free to send pull requests to improve it!
