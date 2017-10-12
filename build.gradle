@@ -1,11 +1,10 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.4-2'
-		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+		kotlinVersion = '1.1.51'
+		springBootVersion = '2.0.0.M5'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
 		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
@@ -22,10 +21,16 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 compileKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions {
+		jvmTarget = "1.8"
+		freeCompilerArgs = ["-Xjsr305=strict"]
+	}
 }
 compileTestKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions {
+		jvmTarget = "1.8"
+		freeCompilerArgs = ["-Xjsr305=strict"]
+	}
 }
 
 jar {
@@ -35,7 +40,6 @@ jar {
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
 }
 
