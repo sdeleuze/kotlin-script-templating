@@ -29,6 +29,7 @@ class ApplicationTests {
 <li>User Stéphane Nicoll</li>
 <li>User Arjen Poutsma</li>
 <li>User Sébastien Deleuze</li>
+<li>User <Evil> <Hacker></li>
 </ul>
 </body>
 </html>"""
@@ -45,6 +46,7 @@ class ApplicationTests {
 <li>Utilisateur Stéphane Nicoll</li>
 <li>Utilisateur Arjen Poutsma</li>
 <li>Utilisateur Sébastien Deleuze</li>
+<li>Utilisateur <Evil> <Hacker></li>
 </ul>
 </body>
 </html>"""

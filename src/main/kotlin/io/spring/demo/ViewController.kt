@@ -15,7 +15,8 @@ class ViewController {
                 User("Brian", "Clozel"),
                 User("Stéphane", "Nicoll"),
                 User("Arjen", "Poutsma"),
-                User("Sébastien", "Deleuze")
+                User("Sébastien", "Deleuze"),
+                User("<Evil>", "<Hacker>")
         ))
         return "index"
     }
