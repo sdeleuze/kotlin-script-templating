@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.51'
-		springBootVersion = '2.0.0.M5'
+		kotlinVersion = '1.2.21'
+		springBootVersion = '2.0.0.RC1'
 	}
 	repositories {
 		mavenCentral()
@@ -11,7 +11,8 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-		classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
+		classpath("io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE")
+		classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.3")
 	}
 }
 
@@ -19,6 +20,7 @@ apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 compileKotlin {
 	kotlinOptions {
@@ -46,12 +48,17 @@ repositories {
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-compiler:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-script-util:${kotlinVersion}") {
 		exclude group: "com.jcabi", module: "jcabi-aether"
 		exclude group: "org.apache.maven", module: "maven-core"
 		exclude group: "org.sonatype.aether", module: "aether-api"
 	}
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+	testCompile('org.springframework.boot:spring-boot-starter-test') {
+		exclude module: "junit"
+	}
+	testCompile("org.junit.jupiter:junit-jupiter-api")
+	testRuntime("org.junit.jupiter:junit-jupiter-engine")
 }

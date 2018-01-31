@@ -1,21 +1,19 @@
 package io.spring.demo
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.client.getForObject
+import org.springframework.test.context.junit.jupiter.SpringExtension
 
 
-@RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT)
-class ApplicationTests {
-
-	@Autowired
-	lateinit var restTemplate: TestRestTemplate
+@ExtendWith(SpringExtension::class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+class ApplicationTests(@Autowired val restTemplate: TestRestTemplate) {
 
 	val englishContent = """<html>
 <body>
@@ -51,17 +49,17 @@ class ApplicationTests {
 
 	@Test
 	fun viewRenderingWithDefaultLocale() {
-		assertEquals(englishContent, restTemplate.getForObject("/", String::class.java))
+		assertEquals(englishContent, restTemplate.getForObject<String>("/"))
 	}
 
 	@Test
 	fun viewRenderingWithEnglishLocale() {
-		assertEquals(englishContent, restTemplate.getForObject("/?locale=en", String::class.java))
+		assertEquals(englishContent, restTemplate.getForObject<String>("/?locale=en"))
 	}
 
 	@Test
 	fun viewRenderingWithFrenchLocale() {
-		assertEquals(frenchContent, restTemplate.getForObject("/?locale=fr", String::class.java))
+		assertEquals(frenchContent, restTemplate.getForObject<String>("/?locale=fr"))
 	}
 
 }
