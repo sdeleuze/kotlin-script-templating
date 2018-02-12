@@ -40,6 +40,10 @@ jar {
 	version = '0.0.1-SNAPSHOT'
 }
 
+bootJar {
+	requiresUnpack '**/kotlin-compiler-*.jar'
+}
+
 repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/milestone" }
