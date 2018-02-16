@@ -1,6 +1,9 @@
 Spring Boot + Kotlin type safe template rendering with i18n and nested template support.
+**This feature is considered experimental** since there is a lot of things to wire manually,
+no cross-site scripting protection out of the box, the caching mechanism need to be improved,
+etc.
 
-Requires Spring Framework 5.x and Kotlin 1.1+.
+It requires Spring Framework 5.x and Kotlin 1.1+.
 
 These templates look like:
 
@@ -21,6 +24,6 @@ To enable variable resolution in `.kts` files in IDEA, go to menu preferences ->
  - Script templates class: `kotlin.script.templates.standard.ScriptTemplateWithBindings`
  - Script templates classpath: `/path/to/kotlin-script-runtime.jar`
  
-This will be configured automatically in future version of IDEA Kotlin plugin.
+This may be configured automatically in future version of IDEA Kotlin plugin.
 
 Feel free to send pull requests to improve it!
