@@ -47,6 +47,7 @@ bootJar {
 repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/milestone" }
+	jcenter()
 }
 
 
@@ -59,6 +60,7 @@ dependencies {
 		exclude group: "org.apache.maven", module: "maven-core"
 		exclude group: "org.sonatype.aether", module: "aether-api"
 	}
+	compile("org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.8")
 	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
 	testCompile('org.springframework.boot:spring-boot-starter-test') {
 		exclude module: "junit"

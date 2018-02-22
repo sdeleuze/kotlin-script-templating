@@ -16,8 +16,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 class ApplicationTests(@Autowired val restTemplate: TestRestTemplate) {
 
 	val englishContent = """<html>
-<body>
+<head>
 <title>Users</title>
+</head>
+<body>
 <p>Locale: <a href="/?locale=fr">FR</a> | <a href="/?locale=en">EN</a></p>
 <h1>Users</h1>
 <ul>
@@ -32,8 +34,10 @@ class ApplicationTests(@Autowired val restTemplate: TestRestTemplate) {
 </html>"""
 
 	val frenchContent = """<html>
-<body>
+<head>
 <title>Utilisateurs</title>
+</head>
+<body>
 <p>Locale: <a href="/?locale=fr">FR</a> | <a href="/?locale=en">EN</a></p>
 <h1>Utilisateurs</h1>
 <ul>

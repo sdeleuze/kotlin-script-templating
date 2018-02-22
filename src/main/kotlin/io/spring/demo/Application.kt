@@ -3,6 +3,7 @@ package io.spring.demo
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Profile
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import org.springframework.web.servlet.view.script.ScriptTemplateConfigurer
 import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver
@@ -28,8 +29,16 @@ class Application : WebMvcConfigurer {
     }
 
     @Bean
-    fun kotlinScriptViewResolver() = ScriptTemplateViewResolver().apply {
-        setPrefix("templates/")
+    @Profile("simple")
+    fun templatePrefix() = "templates/"
+
+    @Bean("templatePrefix")
+    @Profile("kotlinx")
+    fun kotlinxTemplatePrefix() = "kotlinx/templates/"
+
+    @Bean
+    fun kotlinScriptViewResolver(templatePrefix: String) = ScriptTemplateViewResolver().apply {
+        setPrefix(templatePrefix)
         setSuffix(".kts")
     }
 
