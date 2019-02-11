@@ -5,8 +5,6 @@ import javax.script.*
 import org.springframework.beans.factory.getBean
 import java.util.concurrent.ConcurrentHashMap
 
-
-
 fun render(template: String, model: Map<String, Any>, renderingContext: RenderingContext): String {
 	var cache = renderingContext.applicationContext.getBean<ConcurrentHashMap<String, CompiledScript>>()
 	val compiledScript = cache.getOrPut(renderingContext.url,  { compilableEngine().compile(template);  })
@@ -17,4 +15,3 @@ fun render(template: String, model: Map<String, Any>, renderingContext: Renderin
 	bindings.put("cache", cache)
 	return compiledScript.eval(bindings) as String
 }
-
