@@ -5,6 +5,10 @@ etc.
 
 It requires Spring Framework 5.x and Kotlin 1.1+.
 
+**Warning: Kotlin Script Templates are not compatible yet with Spring Boot fatjar mechanism, see related
+[KT-21443](https://youtrack.jetbrains.com/issue/KT-21443) and [KT-27956](https://youtrack.jetbrains.com/issue/KT-27956)
+issues.**
+
 These templates look like:
 
 ```kotlin
