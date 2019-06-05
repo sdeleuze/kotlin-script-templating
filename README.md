@@ -3,11 +3,16 @@ Spring Boot + Kotlin type safe template rendering with i18n and nested template 
 no cross-site scripting protection out of the box, the caching mechanism need to be improved,
 etc.
 
-It requires Spring Framework 5.x and Kotlin 1.1+.
+It requires Spring Framework 5.2 and Kotlin 1.3.40+.
 
-**Warning: Kotlin Script Templates are not compatible yet with Spring Boot fatjar mechanism, see related
-[KT-21443](https://youtrack.jetbrains.com/issue/KT-21443) and [KT-27956](https://youtrack.jetbrains.com/issue/KT-27956)
-issues.**
+Make sure to configure Spring Boot Gradle plugin as following to mke it working with Boot fat JAR.
+
+`build.gradle.kts`
+```kotlin
+tasks.withType<BootJar> {
+	requiresUnpack("**/kotlin-compiler-*.jar")
+}
+```
 
 These templates look like:
 

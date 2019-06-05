@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-	val kotlinVersion = "1.3.21"
-	id("org.springframework.boot") version "2.1.2.RELEASE"
+	val kotlinVersion = "1.3.40-eap-81"
+	id("org.springframework.boot") version "2.2.0.M3"
 	id("org.jetbrains.kotlin.jvm") version kotlinVersion
 	id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
-	id("io.spring.dependency-management") version "1.0.6.RELEASE"
+	id("io.spring.dependency-management") version "1.0.7.RELEASE"
 }
 
 tasks.withType<KotlinCompile> {
@@ -28,22 +28,16 @@ tasks.withType<BootJar> {
 
 repositories {
 	mavenCentral()
+	maven("https://repo.spring.io/milestone")
+	maven("https://dl.bintray.com/kotlin/kotlin-dev") // Kotlin EAP
 }
-
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("io.projectreactor:reactor-core")
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compile("org.jetbrains.kotlin:kotlin-compiler")
-	compile("org.jetbrains.kotlin:kotlin-script-util") {
-		exclude(group = "com.jcabi", module = "jcabi-aether")
-		exclude(group = "org.apache.maven", module = "maven-core")
-		exclude(group = "org.sonatype.aether", module = "aether-api")
-	}
+	compile("org.jetbrains.kotlin:kotlin-script-runtime")
+	runtime("org.jetbrains.kotlin:kotlin-scripting-jsr223-embeddable")
 	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
-	testCompile("org.springframework.boot:spring-boot-starter-test") {
-		exclude(module = "junit")
-	}
-	testCompile("org.junit.jupiter:junit-jupiter-api")
-	testRuntime("org.junit.jupiter:junit-jupiter-engine")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
