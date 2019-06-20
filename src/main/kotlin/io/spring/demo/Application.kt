@@ -18,13 +18,11 @@ import javax.script.CompiledScript
 class Application : WebMvcConfigurer {
 
     @Bean
-    fun kotlinScriptConfigurer(): ScriptTemplateConfigurer {
-        val configurer = ScriptTemplateConfigurer()
-        configurer.engineName = "kotlin"
-        configurer.setScripts("scripts/render.kts")
-        configurer.renderFunction = "render"
-        configurer.isSharedEngine = false
-        return configurer
+    fun kotlinScriptConfigurer() = ScriptTemplateConfigurer().apply {
+		engineName = "kotlin"
+		setScripts("scripts/render.kts")
+		renderFunction = "render"
+		isSharedEngine = false
     }
 
     @Bean

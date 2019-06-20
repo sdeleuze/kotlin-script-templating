@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-	val kotlinVersion = "1.3.40-eap-81"
-	id("org.springframework.boot") version "2.2.0.M3"
+	val kotlinVersion = "1.3.40"
+	id("org.springframework.boot") version "2.2.0.M4"
 	id("org.jetbrains.kotlin.jvm") version kotlinVersion
 	id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
 	id("io.spring.dependency-management") version "1.0.7.RELEASE"
@@ -29,7 +29,6 @@ tasks.withType<BootJar> {
 repositories {
 	mavenCentral()
 	maven("https://repo.spring.io/milestone")
-	maven("https://dl.bintray.com/kotlin/kotlin-dev") // Kotlin EAP
 }
 
 dependencies {
